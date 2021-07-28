@@ -14,14 +14,10 @@ const mostrarPalabras = (text, time = 1000, callback) => {
 	}, time)
 }
 
-let texto = "hola como estas";
-let texto2 = "Mi nombre y apellido es Ernesto Dainesi";
-let texto3 = "Tercer desafio curso coderhouse backend";
-
-mostrarPalabras(texto, 2000, (respuesta1) => {
-	mostrarPalabras(texto2, 2000, (respuesta2) => {
-		mostrarPalabras(texto3, 2000, (respuesta3) => {
-			fin(respuesta1 + respuesta2, respuesta3);
+mostrarPalabras("hola como estas", 2000, (respuesta1) => {
+	mostrarPalabras("Mi nombre y apellido es Ernesto Dainesi", 2000, (respuesta2) => {
+		mostrarPalabras("Tercer desafio curso coderhouse backend", 2000, (respuesta3) => {
+			fin(respuesta1 + respuesta2 + respuesta3);
 		})
 	})
 });
