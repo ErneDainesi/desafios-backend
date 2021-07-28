@@ -1,24 +1,27 @@
 
 const fin = cantidadDePalabras => console.log(`Proceso completo con ${cantidadDePalabras} palabras`);
 
-const mostrarPalabras = (textArray, indx, time = 1000, callback) => {
-	if (indx === textArray.length) {
-		callback(indx);
-	} else {
-		setTimeout(() => {
-			console.log(textArray[indx]);
-			mostrarPalabras(textArray, indx + 1, time, callback);
-		}, time);
-	}
+const mostrarPalabras = (text, time = 1000, callback) => {
+	textArray = text.split(' ');
+	i = 0
+	let interval = setInterval(() => {
+		console.log(textArray[i]);
+		i++;
+		if (i === textArray.length) {
+			clearInterval(interval);
+			callback(textArray.length)
+		}
+	}, time)
 }
 
-const main = () => {
-	let texto = "hola como estas";
-	let texto2 = "Mi nombre y apellido es Ernesto Dainesi";
-	let texto3 = "Tercer desafio curso coderhouse backend";
-	mostrarPalabras(texto.split(' '), 0, 2000, fin);
-	mostrarPalabras(texto2.split(' '), 0, 2000, fin);
-	mostrarPalabras(texto3.split(' '), 0, 2000, fin);
-}
+let texto = "hola como estas";
+let texto2 = "Mi nombre y apellido es Ernesto Dainesi";
+let texto3 = "Tercer desafio curso coderhouse backend";
 
-main();
+mostrarPalabras(texto, 2000, (respuesta1) => {
+	mostrarPalabras(texto2, 2000, (respuesta2) => {
+		mostrarPalabras(texto3, 2000, (respuesta3) => {
+			fin(respuesta1 + respuesta2, respuesta3);
+		})
+	})
+});
