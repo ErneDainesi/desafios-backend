@@ -1,11 +1,14 @@
 import { fromEvent } from "rxjs";
 
-const input = document.querySelector("#inp");
-const label = document.querySelector("#texto-espejado");
-    
-const observable = fromEvent(input as HTMLInputElement, "keyup");
-observable.subscribe(e => {
-    const target = e.target as HTMLInputElement;
-    let text = target.value;
-    (label as HTMLLabelElement).innerText = text.split('').reverse().join('');
+document.addEventListener("DOMContentLoaded", () => {
+	const input = document.querySelector("#inp");
+	const label = document.querySelector("#texto-espejado");
+		
+	const observable = fromEvent(input as HTMLInputElement, "keyup");
+	observable.subscribe(e => {
+		const text = (e.target as HTMLInputElement).value;
+		(label as HTMLLabelElement).innerText = text.split('').reverse().join('');
+	})
 })
+
+
