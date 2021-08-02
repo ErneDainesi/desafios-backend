@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	const label = document.querySelector("#texto-espejado");
 		
 	const observable = fromEvent(input as HTMLInputElement, "keyup");
-	observable.subscribe(e => {
+	const subscription = observable.subscribe(e => {
 		const text = (e.target as HTMLInputElement).value;
 		(label as HTMLLabelElement).innerText = text.split('').reverse().join('');
 	})
+	subscription.unsubscribe();
 })
 
 
