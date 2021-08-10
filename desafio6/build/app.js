@@ -37,11 +37,10 @@ class Archivo {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const archivo = yield fs.promises.readFile(this.nombre, "utf-8");
-                return archivo;
+                console.log(archivo);
             }
             catch (err) {
-                console.error(err);
-                return [];
+                console.log([]);
             }
         });
     }
@@ -49,20 +48,21 @@ class Archivo {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield fs.promises.unlink(this.nombre);
+                console.log("Archivo eliminado");
             }
             catch (err) {
-                console.error(err);
+                throw new Error(err);
             }
         });
     }
     guardar(producto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const json = yield fs.promises.readFile(this.nombre);
-                const data = JSON.parse(json.toString("utf-8"));
+                const json = yield fs.promises.readFile(this.nombre, "utf-8");
+                const data = JSON.parse(json.toString());
                 data.push(Object.assign(Object.assign({}, producto), { id: data.length + 1 }));
                 try {
-                    yield fs.promises.writeFile(this.nombre, JSON.stringify(data));
+                    yield fs.promises.writeFile(this.nombre, JSON.stringify(data, null, '\t'));
                 }
                 catch (err) {
                     throw new Error(err);
@@ -81,5 +81,7 @@ class Archivo {
     }
 }
 const a = new Archivo("./prueba.json");
+a.leer();
 a.guardar({ title: 'Escuadra', price: 123.45, thumbnail: "www.google.com" });
 a.guardar({ title: 'Tijera', price: 123.45, thumbnail: "www.google.com" });
+a.borrar();
