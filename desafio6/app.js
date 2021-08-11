@@ -8,7 +8,7 @@ class Archivo {
 	async leer() {
 		try {
 			const archivo = await fs.promises.readFile(this.nombre, "utf-8");
-			console.log(archivo);
+			return JSON.parse(archivo.toString());
 		} catch (err) {
 			console.log([]);
 			await fs.promises.writeFile(this.nombre, JSON.stringify([]));
@@ -26,10 +26,9 @@ class Archivo {
 
 	async guardar(producto) {
 		try {
-			const json = await fs.promises.readFile(this.nombre, "utf-8");
-			const data = JSON.parse(json.toString());
-			data.push({...producto, id: data.length + 1});
-			await fs.promises.writeFile(this.nombre, JSON.stringify(data));
+			const file = this.leer();
+			data.push({...producto, id: file.length + 1});
+			await fs.promises.writeFile(this.nombre, JSON.stringify(file));
 		} catch {
 			await fs.promises.writeFile(this.nombre, JSON.stringify([{...producto, id: 1}]))
 		}
@@ -38,11 +37,11 @@ class Archivo {
 
 
 /* Pruebo con archivo A*/
-const archivoA = new Archivo("./productosA.json");
+const archivoA = new Archivo("./productosA.txt");
 
 // Leo el archivo, como en un principio no existe, lo crea
 // deberia mostrar []
-archivoA.leer();
+console.log(archivoA.leer());
 
 // Guardo dos objetos
 archivoA.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
@@ -50,17 +49,20 @@ archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
 
 // Leo de nuevo el archivo
 // deberia mostrar array con los dos objetos
-archivoA.leer();
+console.log(archivoA.leer());
 
 /* Pruebo con archivo B */
-const archivoB = new Archivo("./productosB.json");
+const archivoB = new Archivo("./productosB.txt");
 
 // Leo el archivo, como en un principio no existe, lo crea
 // deberia mostrar []
-archivoB.leer();
+console.log(archivoB.leer());
 
 // Guardo un producto
 archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
+
+// Muestro el archivo modificado
+console.log(archivoB.leer());
 
 // Elimino el archivo, no debería estar mas en este directorio
 archivoB.borrar();
