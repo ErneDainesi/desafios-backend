@@ -29,15 +29,18 @@ class Archivo {
 			const json = await fs.promises.readFile(this.nombre, "utf-8");
 			const data = JSON.parse(json.toString());
 			data.push({...producto, id: data.length + 1});
-			await fs.promises.writeFile(this.nombre, JSON.stringify(data, null, '\t'));
-		} catch (err) {
+			await fs.promises.writeFile(this.nombre, JSON.stringify(data));
+		} catch {
 			await fs.promises.writeFile(this.nombre, JSON.stringify([{...producto, id: 1}]))
 		}
 	}
 }
 
-const a = new Archivo("./prueba.json");
+const a = new Archivo("./productos.json");
+
+a.leer(); // deberia mostrar []
+
 a.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
 a.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
-a.leer();
-a.borrar();
+
+a.leer(); // deberia mostrar array con los dos objetos
