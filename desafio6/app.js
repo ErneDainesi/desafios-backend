@@ -1,8 +1,7 @@
-import * as fs from 'fs';
+const fs = require('fs');
 
 class Archivo {
-	nombre: string;
-	constructor(nombreArchivo: string) {
+	constructor(nombreArchivo) {
 		this.nombre = nombreArchivo;
 	}
 
@@ -12,6 +11,7 @@ class Archivo {
 			console.log(archivo);
 		} catch (err) {
 			console.log([]);
+			await fs.promises.writeFile(this.nombre, JSON.stringify([]));
 		}
 	}
 
@@ -24,29 +24,20 @@ class Archivo {
 		}
 	}
 
-	async guardar(producto: object) {
+	async guardar(producto) {
 		try {
 			const json = await fs.promises.readFile(this.nombre, "utf-8");
 			const data = JSON.parse(json.toString());
 			data.push({...producto, id: data.length + 1});
-			try {
-				await fs.promises.writeFile(this.nombre, JSON.stringify(data, null, '\t'));
-			} catch (err) {
-				throw new Error(err);
-			}
+			await fs.promises.writeFile(this.nombre, JSON.stringify(data, null, '\t'));
 		} catch (err) {
-			console.error(err);
-			try {
-				await fs.promises.writeFile(this.nombre, JSON.stringify([{...producto, id: 1}]))
-			} catch (err) {
-				throw new Error(err);
-			}
+			await fs.promises.writeFile(this.nombre, JSON.stringify([{...producto, id: 1}]))
 		}
 	}
 }
 
 const a = new Archivo("./prueba.json");
-a.leer();
 a.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
 a.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
+a.leer();
 a.borrar();

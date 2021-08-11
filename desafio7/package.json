@@ -1,5 +1,5 @@
 {
-  "name": "desafio6",
+  "name": "desafio7",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^16.4.13"
+    "express": "^4.17.1"
   }
 }
