@@ -36,11 +36,31 @@ class Archivo {
 	}
 }
 
-const a = new Archivo("./productos.json");
 
-a.leer(); // deberia mostrar []
+/* Pruebo con archivo A*/
+const archivoA = new Archivo("./productosA.json");
 
-a.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
-a.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
+// Leo el archivo, como en un principio no existe, lo crea
+// deberia mostrar []
+archivoA.leer();
 
-a.leer(); // deberia mostrar array con los dos objetos
+// Guardo dos objetos
+archivoA.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
+archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
+
+// Leo de nuevo el archivo
+// deberia mostrar array con los dos objetos
+archivoA.leer();
+
+/* Pruebo con archivo B */
+const archivoB = new Archivo("./productosB.json");
+
+// Leo el archivo, como en un principio no existe, lo crea
+// deberia mostrar []
+archivoB.leer();
+
+// Guardo un producto
+archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
+
+// Elimino el archivo, no debería estar mas en este directorio
+archivoB.borrar();
