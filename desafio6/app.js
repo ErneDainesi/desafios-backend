@@ -10,8 +10,9 @@ class Archivo {
 			const archivo = await fs.promises.readFile(this.nombre, "utf-8");
 			return JSON.parse(archivo.toString());
 		} catch (err) {
-			console.log([]);
 			await fs.promises.writeFile(this.nombre, JSON.stringify([]));
+			const archivo = await fs.promises.readFile(this.nombre, "utf-8");
+			return JSON.parse(archivo.toString());
 		}
 	}
 
@@ -26,43 +27,26 @@ class Archivo {
 
 	async guardar(producto) {
 		try {
-			const file = this.leer();
-			data.push({...producto, id: file.length + 1});
-			await fs.promises.writeFile(this.nombre, JSON.stringify(file));
-		} catch {
+			const data = await this.leer();
+			data.push({...producto, id: data.length + 1});
+			await fs.promises.writeFile(this.nombre, JSON.stringify(data));
+		} catch (err) {
 			await fs.promises.writeFile(this.nombre, JSON.stringify([{...producto, id: 1}]))
 		}
 	}
 }
 
+async function tests() {
+	const archivo = new Archivo("./productos.txt");
+	archivo.leer()
+		.then(data => console.log(data))
+	await archivo.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
+	archivo.leer()
+		.then(data => console.log(data));
+	await archivo.guardar({title: 'Tenedor', price: 123.45, thumbnail: "www.google.com"});
+	await archivo.leer()
+		.then(data => console.log(data));
+	archivo.borrar();
+}
 
-/* Pruebo con archivo A*/
-const archivoA = new Archivo("./productosA.txt");
-
-// Leo el archivo, como en un principio no existe, lo crea
-// deberia mostrar []
-console.log(archivoA.leer());
-
-// Guardo dos objetos
-archivoA.guardar({title: 'Escuadra', price: 123.45, thumbnail: "www.google.com"});
-archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
-
-// Leo de nuevo el archivo
-// deberia mostrar array con los dos objetos
-console.log(archivoA.leer());
-
-/* Pruebo con archivo B */
-const archivoB = new Archivo("./productosB.txt");
-
-// Leo el archivo, como en un principio no existe, lo crea
-// deberia mostrar []
-console.log(archivoB.leer());
-
-// Guardo un producto
-archivoA.guardar({title: 'Tijera', price: 123.45, thumbnail: "www.google.com"});
-
-// Muestro el archivo modificado
-console.log(archivoB.leer());
-
-// Elimino el archivo, no debería estar mas en este directorio
-archivoB.borrar();
+tests();
