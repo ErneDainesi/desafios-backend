@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-class Archivo {
+export class Archivo {
 	constructor(nombreArchivo) {
 		this.nombre = nombreArchivo;
 	}
