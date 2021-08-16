@@ -1,13 +1,13 @@
 import express from 'express';
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 const PORT = 8080;
 const server = app.listen(PORT, () => {
 	console.log("Servidor inicializado en puerto 8080");
 })
-
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 
 const productos = [];
 
