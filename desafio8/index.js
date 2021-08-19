@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 	res.send('<h1>Desafio 8</h1>');
 })
 
-app.get('/api/productos/listar', (req, res) => {
+app.get('/api/productos', (req, res) => {
 	if (productos.length > 0) {
 		res.json(productos);
 	} else {
@@ -23,7 +23,7 @@ app.get('/api/productos/listar', (req, res) => {
 	}
 })
 
-app.get('/api/productos/listar/:id', (req, res) => {
+app.get('/api/productos/:id', (req, res) => {
 	const idProducto = req.params.id;
 	if (!productos[idProducto - 1]) {
 		res.json({error: 'producto no encontrado'})
@@ -32,7 +32,7 @@ app.get('/api/productos/listar/:id', (req, res) => {
 	}
 })
 
-app.post('/api/productos/guardar', (req, res) => {
+app.post('/api/productos', (req, res) => {
 	console.log("POST request");
 	const producto = {...req.body, id: productos.length + 1};
 	productos.push(producto);
