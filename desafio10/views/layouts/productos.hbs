@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/style.css">
+	<title>Productos | Desafio 10</title>
+</head>
+
+<body>
+	<div class="container">
+		{{#if hayProductos}}
+		<h1>Vista de Productos</h1>
+		<div class="vista-productos">
+			{{#each productos}}
+			<div class="producto">
+				<p>{{this.title}}</p>
+				<p>${{this.price}}</p>
+				<img src="{{this.thumbnail}}" alt="imagen-producto" />
+			</div>
+			{{/each}}
+		</div>
+		{{/if}}
+		{{#unless hayProductos}}
+		<div class="msg-no-hay-productos">
+			<h1>No se encontraron productos</h1>
+		</div>
+		{{/unless}}
+	</div>
+</body>
+
+</html>
