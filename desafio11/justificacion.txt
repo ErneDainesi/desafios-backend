@@ -1,0 +1,1 @@
+Opté usar EJS porque la sintaxis es facil de utilizar, ya que es una mezcla entre Javascript y HTML.

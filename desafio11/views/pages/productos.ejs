@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/style.css">
+	<title>Productos | Desafio 11</title>
+</head>
+
+<body>
+	<div class="container-form">
+		<h1>Ingrese Producto</h1>
+		<form action="/productos/guardar" method="POST" enctype="application/x-www-form-urlencoded">
+			<input type="text" name="title" placeholder="Titulo">
+			<input type="number" name="price" placeholder="Precio">
+			<input type="url" name="thumbnail" placeholder="Url Imagen">
+			<button type="submit">Enviar</button>
+		</form>
+	</div>
+
+</body>
+
+</html>
