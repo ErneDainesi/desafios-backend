@@ -1,0 +1,20 @@
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const productos = require('./routes/productos.route')(io);
+const PORT = 8080;
+
+app.use(express.static('./public'));
+app.use('/productos', productos);
+
+app.get('/', (req, res) => {
+	res.send("index.html");
+})
+
+app.set('view engine', 'ejs');
+
+const server = http.listen(PORT, () => {
+	console.log(`Escuchando en puerto: ${PORT}`);
+});
+

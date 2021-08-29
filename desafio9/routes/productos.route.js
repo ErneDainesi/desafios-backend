@@ -15,21 +15,21 @@ router.get('/producto/:id', (req, res) => {
 	}
 });
 
-router.post('/guardar', (req, res) => {
+router.post('/', (req, res) => {
 	console.log("POST request");
 	const producto = {...req.body, id: productos.length + 1};
 	productos.push(producto);
 	res.json(producto);
 });
 
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 	console.log("PUT request");
 	const id = req.params.id;
 	productos[id - 1] = req.body;
 	res.send(productos[id - 1]);
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 	console.log("DELETE request");
 	const productId = req.params.id;
 	const deletedProduct = productos.splice(productId - 1, 1);

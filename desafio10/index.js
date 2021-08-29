@@ -24,7 +24,8 @@ app.get('/', (req, res) => {
 	res.send('<h1>Desafio 10</h1>');
 })
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
 	console.log("Servidor inicializado en puerto 8080");
 })
 
+server.close();
