@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Desafio 13</title>
+</head>
+
+<body>
+	<form onsubmit="return addMessage(this)">
+		<input type="text" id="username" placeholder="Nombre">
+		<input type="text" id="texto" placeholder="Cuentanos algo...">
+		<input type="submit" value="Enviar">
+	</form>
+	<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+</body>
+
+</html>
