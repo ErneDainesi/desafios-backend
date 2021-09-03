@@ -1,15 +1,20 @@
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const productos = require('./routes/productos.route')(io);
+const PORT = 8080;
 
-app.use(express.static('public'));
+app.use(express.static('./public'));
+app.use('/productos', productos);
 
-io.on('connection', socket => {
-	console.log('Nueva conexion');
-	socket.emit("prueba", "Esto es una prueba");
-})
+app.get('/', (req, res) => {
+	res.send("index.html");
+});
 
-server.listen(8080, _ => {
-	console.log('Servidor escuchando en http://localhost:8080');
-})
+app.set('view engine', 'ejs');
+
+const server = http.listen(PORT, () => {
+	console.log(`Escuchando en puerto: ${PORT}`);
+});
+
