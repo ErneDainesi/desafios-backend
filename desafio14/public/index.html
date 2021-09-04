@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/style.css">
+	<title>Desafio 12</title>
+</head>
+
+<body>
+	<div class="container-form">
+		<h1>Ingrese Producto</h1>
+		<form action="/productos" method="POST" enctype="application/x-www-form-urlencoded">
+			<input type="text" name="title" placeholder="Titulo" id="product-name" />
+			<input type="number" name="price" placeholder="Precio" id="product-price" />
+			<input type="url" name="thumbnail" placeholder="Url Imagen" id="product-thumbnail" />
+			<button type="submit" id="products-submit">Enviar</button>
+		</form>
+	</div>
+	<script type="text/html" id="products-template">
+		<div class="vista-productos">
+			<% productos.forEach(producto => { %>
+				<div class="producto">
+					<p>
+						<%= producto.title %>
+					</p>
+					<p>
+						$<%= producto.price %>
+					</p>
+					<img src="<%= producto.thumbnail %>" alt="imagen de producto">
+				</div>
+			<%})%>
+		</div>
+	</script>
+	<script type="text/html" id="chat-template">
+			<div class="chat">
+				<% messages.forEach(message => { %>
+						<div class="message">
+							<span class="message-email"><%= message.email %> </span>
+							<span class="message-date">[<%= message.timeAndDate %>]: </span>
+							<span class="message-text"><%= message.mensaje %></span>
+						</div>
+				<% }) %>
+			</div>
+	</script>
+	<div id="to-render"></div>
+	<div class="chat-container">
+		<h2>Centro de Mensajes</h2>
+		<input type="email" id="chat-email" placeholder="Ingresá tu mail" />
+		<div id="render-chat"></div>
+		<div class="chat-input">
+			<input type="text" id="chat-message" placeholder="Ingresá un mensaje..." />
+			<button type="submit" id="send-chat">Enviar</button>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/index.js"></script>
+</body>
+
+</html>
