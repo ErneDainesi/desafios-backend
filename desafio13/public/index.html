@@ -34,7 +34,6 @@
 		</div>
 	</script>
 	<script type="text/html" id="chat-template">
-		<div class="chat-container">
 			<div class="chat">
 				<% messages.forEach(message => { %>
 						<div class="message">
@@ -44,15 +43,16 @@
 						</div>
 				<% }) %>
 			</div>
-		</div>
 	</script>
 	<div id="to-render"></div>
-	<h2>Centro de Mensajes</h2>
-	<input type="email" id="chat-email" placeholder="Ingresá tu mail" />
-	<div id="render-chat"></div>
-	<div class="chat-input">
-		<input type="text" id="chat-message" placeholder="Ingresá un mensaje..." />
-		<button type="submit" id="send-chat">Enviar</button>
+	<div class="chat-container">
+		<h2>Centro de Mensajes</h2>
+		<input type="email" id="chat-email" placeholder="Ingresá tu mail" />
+		<div id="render-chat"></div>
+		<div class="chat-input">
+			<input type="text" id="chat-message" placeholder="Ingresá un mensaje..." />
+			<button type="submit" id="send-chat">Enviar</button>
+		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>

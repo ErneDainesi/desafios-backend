@@ -63,3 +63,31 @@ img {
 	gap: 2rem;
 }
 
+.chat-container {
+	display: grid;
+	place-items: center;
+}
+
+#render-chat {
+	margin: 1rem 0;
+}
+
+#render-chat .chat .message .message-email {
+	font-weight: bold;
+	color: blue;
+}
+
+#render-chat .chat .message .message-date {
+	color: red;
+}
+
+#render-chat .chat .message .message-text {
+	color: green;
+}
+
+.chat-container .chat-input {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	justify-content: flex-start;
+}
