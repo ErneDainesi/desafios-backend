@@ -6,7 +6,7 @@ const productos = require('./routes/productos.route')(io);
 const PORT = 8080;
 const messages = [];
 
-app.use(express.static('../../public'));
+app.use(express.static('public'));
 app.use('/productos', productos);
 
 app.get('/', (req, res) => {
@@ -26,3 +26,4 @@ app.set('view engine', 'ejs');
 http.listen(PORT, _ => {
 	console.log(`JS Server on port ${PORT}`);
 });
+

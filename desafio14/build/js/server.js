@@ -12,7 +12,7 @@ var productos = require('./routes/productos.route')(io);
 
 var PORT = 8080;
 var messages = [];
-app.use(express["static"]('../../public'));
+app.use(express["static"]('public'));
 app.use('/productos', productos);
 app.get('/', function (req, res) {
   res.send('index.html');
