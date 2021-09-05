@@ -1,28 +1,31 @@
 {
   "name": "desafio14",
   "version": "1.0.0",
-  "description": "",
+  "description": "Desafio 14 de Programacion Backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ServerTStoJS5": "tsc src/ts/server.ts",
+    "ServerTStoJS5": "tsc",
     "ServerES6toJS5": "node_modules/.bin/babel src/js/ -d build/js/",
     "build-js": "npm run ServerES6toJS5 && nodemon --quiet build/js/server.js",
-    "build-ts": "npm run ServerTStoJS5 && nodemon --quiet build/ts/server.ts"
+    "build-ts": "npm run ServerTStoJS5 && nodemon --quiet build/ts/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "@types/express": "^4.17.13",
     "socket.io": "^4.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.4",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.4",
+    "@types/express": "^4.17.13",
     "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "nodemon": "^2.0.12",
+    "socket.io": "^4.2.0",
     "typescript": "^4.4.2"
   }
 }
