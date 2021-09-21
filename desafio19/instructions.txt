@@ -1,0 +1,48 @@
+use ecommerce;
+
+db.createCollection("mensajes");
+db.createCollection("productos");
+
+db.productos.insert([
+    {nombre: "Fideos", categoria: "Pastas", stock: 10, precio: 130},
+    {nombre: "Leche", categoria: "Lacteos", stock: 17, precio: 500},
+    {nombre: "Manteca", categoria: "Lacteos", stock: 30, precio: 435},
+    {nombre: "Yerba", categoria: "Hierbas", stock: 50, precio: 333},
+    {nombre: "Carne", categoria: "Carne", stock: 80, precio: 796},
+    {nombre: "Galletitas", categoria: "Harinas", stock: 20, precio: 4320},
+    {nombre: "Coca Cola", categoria: "Bebida", stock: 25, precio: 1280},
+    {nombre: "Fernet", categoria: "Bebida", stock: 30, precio: 3320},
+    {nombre: "Crema", categoria: "Lacteo", stock: 40, precio: 2300},
+    {nombre: "Ravioles", categoria: "Pastas", stock: 33, precio: 4320}
+]);
+
+db.mensajes.insert([
+    {usuario: "Pepe", mensaje: "Hola a todos!"},
+    {usuario: "Agus", mensaje: "Hola!"},
+    {usuario: "Erne", mensaje: "Hola. como estan?"},
+    {usuario: "Tomas", mensaje: "Alguno hizo la tarea?"},
+    {usuario: "Mateo", mensaje: "Había tarea??"},
+    {usuario: "Jose", mensaje: "Bien por suerte, vos?"},
+    {usuario: "Pedro", mensaje: "La tarea era para la semana que viene!"},
+    {usuario: "Fede", mensaje: "Chau!"},
+    {usuario: "Edu", mensaje: "Gracias!"},
+    {usuario: "Santi", mensaje: "Hasta luego!"}
+]);
+
+db.productos.find();
+db.mensajes.find();
+
+db.productos.count();
+db.mensajes.count();
+
+db.productos.insertOne({nombre: "Sprite", categoria: "Bebida", stock: 5, precio: 350});
+db.productos.find({precio: {$lt: 1000}});
+db.productos.find({precio: {$gte: 1000, $lte: 3000}});
+db.productos.find({precio: {$gt: 3000}});
+db.productos.find().sort({precio: 1}).skip(2).limit(1);
+
+db.productos.updateMany({}, {$set: {stock: 100}});
+db.productos.updateMany({precio: {$gte: 4000}}, {$set: {stock: 0}});
+db.productos.deleteMany({precio: {$lte: 1000}});
+
+db.createUser({user: "pepe", pwd: "asd456", roles: [{role: "read", db: "ecommerce"}]});
