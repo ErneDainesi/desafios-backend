@@ -1,24 +1,14 @@
 import { IRouter, Router, Request, Response } from "express";
-import messagesSchema from "../schemas/messagesSchema";
+import { getOneMessage, saveMessage } from "../controllers/messages";
 
 const router: IRouter = Router();
 
 router.get('/', (req: Request, res: Response) => {
-    res.json({message: "Works"});
+    res.json({message: "Messages"});
 });
 
-router.post('/', async (req: Request, res: Response) => {
-    const newMessage = new messagesSchema(req.body);
-    await newMessage.save();
-    res.json({message: "Message Saved"});
-});
+router.post('/', saveMessage);
 
-router.get('/:id', async (req: Request, res: Response) => {
-    const {id} = req.params;
-    if (!id) res.json({message: "Need an ID"});
-    const message = await messagesSchema.findById(id);
-    console.log("mensaje: ", message);
-    res.json({message});
-});
+router.get('/:id', getOneMessage);
 
 export default router;
