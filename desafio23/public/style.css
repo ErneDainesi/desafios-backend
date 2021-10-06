@@ -1,0 +1,93 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	width: 200px;
+	height: 200px;
+}
+
+.container {
+	display: grid;
+	place-items: center;
+}
+
+.container .vista-productos,
+#to-render .vista-productos {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem;
+	box-shadow: 5px 7px 5px gray;
+	background-color: #F6F8FF;
+}
+
+.container .vista-productos .headers,
+.container .vista-productos .producto,
+#to-render .vista-productos .producto,
+#to-render .vista-productos .headers {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 2rem;
+	width: 100%;
+	padding: 1rem;
+}
+
+.container .vista-productos .producto p {
+	font-size: 1.5rem;
+}
+
+.container .msg-no-hay-productos {
+	background-color:#fcba03;
+	padding: 1rem;
+	border-radius: 1rem;
+	box-shadow: 5px 7px 5px gray;
+	margin-top: 3rem;
+}
+
+.container-form {
+	display: grid;
+	place-items: center;
+}
+
+.container-form form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.chat-container {
+	display: grid;
+	place-items: center;
+}
+
+#render-chat {
+	margin: 1rem 0;
+}
+
+#render-chat .chat .message .message-email {
+	font-weight: bold;
+	color: blue;
+}
+
+#render-chat .chat .message .message-date {
+	color: red;
+}
+
+#render-chat .chat .message .message-text {
+	color: green;
+}
+
+.chat-container .chat-input {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	justify-content: flex-start;
+}
