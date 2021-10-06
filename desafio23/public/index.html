@@ -37,9 +37,9 @@
 			<div class="chat">
 				<% messages.forEach(message => { %>
 						<div class="message">
-							<span class="message-email"><%= message.alias %> </span>
-							<span class="message-date">[<%= message.timeAndDate %>]: </span>
-							<span class="message-text"><%= message.mensaje %></span>
+							<span class="message-email"><%= message.entities.chats.undefined.author %> </span>
+							<span class="message-date">[<%= message.entities.chats.undefined.timeAndDate %>]: </span>
+							<span class="message-text"><%= message.entities.chats.undefined.text %></span>
 						</div>
 				<% }) %>
 			</div>
@@ -60,9 +60,7 @@
 		</div>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="/normalizr.js"></script>
 	<script src="/index.js"></script>
 </body>
 

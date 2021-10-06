@@ -55,14 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	socket.on("show-new-message", data => {
 		const template = ejs.compile(chatTemplate.innerHTML);
-		const denormalizedMessages = denormalizeData(data);
-		renderChat.innerHTML = template({messages: denormalizedMessages});
+		console.log(data);
+		renderChat.innerHTML = template({messages: data});
 	});
 
 	socket.on("new-chat-user", data => {
 		const template = ejs.compile(chatTemplate.innerHTML);
-		const denormalizedMessages = denormalizeData(data);
-		renderChat.innerHTML = template({messages: denormalizedMessages});
+		console.log(data);
+		renderChat.innerHTML = template({messages: data});
 	})
 
 	submitProductBtn.addEventListener("click", e => {

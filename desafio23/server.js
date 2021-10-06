@@ -17,9 +17,9 @@ app.get('/', (req, res) => {
 io.on('connection', socket => {
 	socket.emit("new-chat-user", messages);
 	socket.on("new-message", data => {
-		messages.push(data);
-		const normalizedMessages = normalizeData(messages);
-		io.sockets.emit("show-new-message", normalizedMessages);
+		const normalizedMessage = normalizeData(data);
+		messages.push(normalizedMessage);
+		io.sockets.emit("show-new-message", messages);
 	});
 })
 
