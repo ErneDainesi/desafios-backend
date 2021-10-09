@@ -21,9 +21,10 @@ export const logout = (req: Request, res: Response) => {
     const expiredSession: boolean = req.query.sessionExpired === "true";
     req.session.destroy(err => {
         if (!err && !expiredSession) {
-            res.clearCookie('userSession').render('pages/logout');
+            res.clearCookie('userSession').render('pages/logout', {sessionExpiredMessage: false});
         } else if (!err && expiredSession ) {
-            res.clearCookie('userSession').render('pages/logout', {message: "Session expired"});
+            const sessionExpiredMessage = "Session expired";
+            res.clearCookie('userSession').render('pages/logout', {sessionExpiredMessage});
         } else {
             res.send({status: 'Logout Error', body: err});
         }

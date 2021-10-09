@@ -3,7 +3,7 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import loginController from './routes/login.route'
 import { User } from './users';
-import { checkForInactivity } from './middlewares/validate_login';
+import { checkForInactivity } from './middlewares/login.middlewares';
 
 const app: Application = express();
 const ejs = require("ejs").__express; // solucion a error "cannot find ejs module"
