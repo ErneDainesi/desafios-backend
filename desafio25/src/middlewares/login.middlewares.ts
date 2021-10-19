@@ -7,4 +7,4 @@ export const checkForInactivity = (req: Request, res: Response, next: NextFuncti
     if (creationTime && now - creationTime > oneMinute) {
         res.redirect('/login/logout/?sessionExpired=true');
     }
-}
+};
