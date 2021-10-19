@@ -1,5 +1,4 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
-import { User, users } from "../users";
+import { NextFunction, Request, Response } from "express";
 
 export const checkForInactivity = (req: Request, res: Response, next: NextFunction) => {
     const creationTime: number | undefined = req.session.creationTime;

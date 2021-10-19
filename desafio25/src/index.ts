@@ -2,8 +2,9 @@ import express, {Application, Request, Response} from 'express';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import loginController from './routes/login.route'
-import { User } from './users';
+import { User } from './models/User';
 import MongoStore from 'connect-mongo';
+import { COOKIE_MAX_AGE, MONGO_URL, PORT } from './constants';
 
 const app: Application = express();
 const ejs = require("ejs").__express; // solucion a error "cannot find ejs module"
@@ -12,12 +13,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(session({
-    store: MongoStore.create({mongoUrl: "mongodb+srv://ernesto:erne@cluster0.mf9ug.mongodb.net/ecommerce?retryWrites=true&w=majority"}),
+    store: MongoStore.create({mongoUrl: MONGO_URL}),
     secret: 'secreto',
     resave: true,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60000
+        maxAge: COOKIE_MAX_AGE
     }
 }));
 
@@ -28,6 +29,7 @@ declare module 'express-session' {
         creationTime: number
     }
 }
+
 app.use('/login', loginController);
 
 app.set('view engine', 'ejs');
@@ -38,6 +40,6 @@ app.get('/', (req: Request, res: Response) => {
     res.redirect('/login');
 });
 
-app.listen(8080, () => {
-    console.log('Ready');
+app.listen(PORT, () => {
+    console.log(`Listening on port: ${PORT}`);
 });

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { User } from "../users";
+import { User } from "../models/User";
 
 export const loginMainPage = (req: Request, res: Response) => {
     res.render('pages/login');
