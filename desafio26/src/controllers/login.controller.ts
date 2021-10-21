@@ -6,11 +6,24 @@ export const loginMainPage = (req: Request, res: Response) => {
 };
 
 export const login = (req: Request, res: Response) => {
-    const user: User = {...req.body};
-    req.session.user = user;
-    req.session.creationTime = new Date().getTime();
-    res.cookie('userSession', 'userLoggedIn', {maxAge: 60000}).redirect(`/login/welcome/?user=${user.username}`);
+    res.send('Logged in');
 };
+
+export const failedLogin = (req: Request, res: Response) => {
+    res.send("<h1>Failed Login</h1>");
+};
+
+export const signup = (req: Request, res: Response) => {
+    res.send("New user created");
+};
+
+export const signupPage = (req: Request, res: Response) => {
+    res.render('pages/register');
+};
+
+export const failSignup = (req: Request, res: Response) => {
+    res.send("<h1>Failed Signup</h1>");
+};;
 
 export const welcome = (req: Request, res: Response) => {
     const {user} = req.query;
