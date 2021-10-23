@@ -6,10 +6,8 @@ import UserSchema, { User } from './models/User';
 import MongoStore from 'connect-mongo';
 import { COOKIE_MAX_AGE, MONGO_URL, PORT } from './constants';
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { hashPassword, isValidPassword } from './lib/passwordManagment';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { MongoDatabase } from './db/MongoDatabase';
-import { mongo } from 'mongoose';
 
 const app: Application = express();
 const ejs = require("ejs").__express; // solucion a error "cannot find ejs module"
@@ -29,44 +27,17 @@ app.use(session({
 
 MongoDatabase.connect();
 
-passport.use('login', new LocalStrategy({
-    passReqToCallback: true
-}, (req, username, password, done) => {
-    UserSchema.findOne({username}, (err: any, user: User) => {
+passport.use(new FacebookStrategy({
+    clientID: "4327431854042514",
+    clientSecret: "3cd04537b7220ae5a4d101f955bbdc8e",
+    callbackURL: "login/facebook/callback",
+}, (accessToken, refreshToken, profile, done) => {
+    UserSchema.find({id: profile.id}, (err: any, user: User) => {
         if (err) return done(err);
-        if (!user) {
-            console.log(`User with username: ${username} was not found`);
-            return done(null, false);
-        }
-        if (!isValidPassword(user, password)) {
-            console.log(user.password);
-            console.log(password);
-            console.log("Invalid password");
-            return done(null, false);
-        }
-        return done(null, user);
-    })
-}));
-
-passport.use('signup', new LocalStrategy({
-    passReqToCallback: true
-}, (req, username, password, done) => {
-    UserSchema.findOne({username}, (err: any, user: User) => {
-        if (err) return done(err);
-        if (user) {
-            console.log("User already exists");
-            return done(null, false);
-        }
-        const newUser: User = req.body;
-        const mongoDB: MongoDatabase = new MongoDatabase();
-        try {
-            mongoDB.insertUser(newUser);
-            return done(null, newUser);
-        } catch (err) {
-            console.error(err);
-        }
-    })
-}));
+        done(null, user);
+    });
+}
+));
 
 passport.serializeUser((user, done) => {
     done(null, (user as User).username);
@@ -97,7 +68,7 @@ app.set('views', './src/views');
 app.engine('ejs', ejs);
 
 app.get('/', (req: Request, res: Response) => {
-    res.redirect('/login');
+    res.redirect('/login/facebook');
 });
 
 app.listen(PORT, () => {
