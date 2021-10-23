@@ -6,7 +6,7 @@ export const loginMainPage = (req: Request, res: Response) => {
 };
 
 export const login = (req: Request, res: Response) => {
-    res.send('Logged in');
+    res.redirect('/login/welcome');
 };
 
 export const failedLogin = (req: Request, res: Response) => {

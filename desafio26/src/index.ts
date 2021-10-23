@@ -57,10 +57,14 @@ passport.use('signup', new LocalStrategy({
             console.log("User already exists");
             return done(null, false);
         }
-        const newUser: User = req.body;
+        const hashedPassword = hashPassword(req.body.password);
+        const newUser = {
+            username: req.body.username,
+            password: hashedPassword
+        };
         const mongoDB: MongoDatabase = new MongoDatabase();
         try {
-            mongoDB.insertUser(newUser);
+            mongoDB.insertUser(newUser as User);
             return done(null, newUser);
         } catch (err) {
             console.error(err);
