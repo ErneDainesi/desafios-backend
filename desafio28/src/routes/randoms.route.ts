@@ -1,8 +1,8 @@
 import express, {IRouter} from 'express';
-import {generateRandomNumbers} from '../controllers/randoms.controller';
+import {randoms} from '../controllers/randoms.controller';
 
 const router: IRouter = express.Router();
 
-router.get('/', generateRandomNumbers);
+router.get('/', randoms);
 
 export default router;

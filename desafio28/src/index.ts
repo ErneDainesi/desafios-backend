@@ -81,7 +81,7 @@ app.get('/', (req: Request, res: Response) => {
 
 const port = getServerPort();
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
 	console.log(`Listening on port: ${port}`);
 });
 
