@@ -15,10 +15,11 @@ declare module 'express-session' {
 
 MongoDatabase.connect();
 const port = getServerPort();
+const numCpus = cpus().length;
 
 // cluster.isMaster is deprecated https://nodejs.org/api/cluster.html#clusterismaster
 if (cluster.isPrimary) {
-	for (let i = 0; i < cpus.length; i++) {
+	for (let i = 0; i < numCpus; i++) {
 		cluster.fork();
 	}
 
