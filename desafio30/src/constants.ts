@@ -10,3 +10,5 @@ export const FB_CLIENT_ID_INDEX = 3;
 export const FB_CLIENT_SECRET_INDEX = 4;
 export const MAX_RANDOM_RANGE = 1000;
 export const MIN_RANDOM_RANGE = 1;
+export const CLUSTER_MODE = 'CLUSTER';
+export const SERVER_MODE_INDEX = 5;

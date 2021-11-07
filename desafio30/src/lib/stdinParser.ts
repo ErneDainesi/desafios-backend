@@ -4,7 +4,9 @@ import {
 	PORT,
 	FB_CLIENT_ID_INDEX,
 	FB_CLIENT_SECRET_INDEX,
-	PORT_INDEX
+	PORT_INDEX,
+	SERVER_MODE_INDEX,
+	CLUSTER_MODE
 } from '../constants';
 
 export const getServerPort = () => {
@@ -17,5 +19,9 @@ export const getFacebookClientId = () => {
 
 export const getFacebookClientSecret = () => {
 	return process.argv[FB_CLIENT_SECRET_INDEX] ? process.argv[FB_CLIENT_SECRET_INDEX] : FB_CLIENT_SECRET;
+}
+
+export const getServerMode = () => {
+	return process.argv[SERVER_MODE_INDEX] === CLUSTER_MODE;
 }
 
