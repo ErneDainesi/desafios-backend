@@ -4,7 +4,6 @@ import {MongoDatabase} from './db/MongoDatabase';
 import cluster from 'cluster';
 import {cpus} from 'os';
 import app from './app';
-import {CLUSTER_MODE} from './constants';
 
 // Con esto puedo extender session
 declare module 'express-session' {
@@ -41,7 +40,7 @@ const initClusterMode = () => {
 	}
 }
 
-if (getServerMode() === CLUSTER_MODE) {
+if (getServerMode()) {
 	initClusterMode();
 } else {
 	app.listen(port, () => {
