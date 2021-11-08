@@ -34,7 +34,7 @@ const initClusterMode = () => {
 		})
 	} else {
 		app.listen(port, () => {
-			console.log(`Listening on port: ${port}`);
+			console.log(`[CLUSTER] Listening on port: ${port}`);
 			console.log(`worker ${process.pid} started`);
 		});
 	}
@@ -44,8 +44,7 @@ if (getServerMode()) {
 	initClusterMode();
 } else {
 	app.listen(port, () => {
-		console.log(`Listening on port: ${port}`);
-		console.log(`worker ${process.pid} started`);
+		console.log(`[FORK] Listening on port: ${port}`);
 	});
 }
 
