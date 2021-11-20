@@ -31,3 +31,5 @@ Summary report @ 16:58:09(-0300) 2021-11-20
   Codes:
     302: 2057
 
+Commando usado (en bash):
+$ artillery quick -c 50 -n 20 http://localhost:8080/randoms?amount=1000 > artillery_with_out_logs.txt
