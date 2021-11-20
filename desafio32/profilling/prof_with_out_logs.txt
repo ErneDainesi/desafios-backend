@@ -1,0 +1,16 @@
+Statistical profiling result from isolate-0x5650ff05fcf0-170312-v8.log, (2105 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   1144   54.3%          /usr/bin/node
+     12    0.6%          /usr/lib/libcrypto.so.1.1
+      1    0.0%          [vdso]
+      1    0.0%          /usr/lib/libuv.so.1.0.0
+      1    0.0%          /usr/lib/libc-2.33.so
+
+ [Summary]:
+   ticks  total  nonlib   name
+     72    3.4%    7.6%  JavaScript
+    874   41.5%   92.4%  C++
+    209    9.9%   22.1%  GC
+   1159   55.1%          Shared libraries

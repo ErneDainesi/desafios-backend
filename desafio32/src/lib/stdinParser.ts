@@ -21,7 +21,7 @@ export const getFacebookClientSecret = () => {
 	return process.argv[FB_CLIENT_SECRET_INDEX] ? process.argv[FB_CLIENT_SECRET_INDEX] : FB_CLIENT_SECRET;
 }
 
-export const getServerMode = () => {
+export const serverAsClusterMode = () => {
 	return process.argv[SERVER_MODE_INDEX] === CLUSTER_MODE;
 }
 

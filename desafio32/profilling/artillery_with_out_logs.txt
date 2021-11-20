@@ -1,0 +1,33 @@
+Started phase 0, duration: 1s @ 16:58:07(-0300) 2021-11-20
+Report @ 16:58:09(-0300) 2021-11-20
+Elapsed time: 1 second
+  Scenarios launched:  50
+  Scenarios completed: 50
+  Requests completed:  2057
+  Mean response/sec: 2024.5
+  Response time (msec):
+    min: 0
+    max: 757
+    median: 6
+    p95: 17
+    p99: 552.7
+  Codes:
+    302: 2057
+
+All virtual users finished
+Summary report @ 16:58:09(-0300) 2021-11-20
+  Scenarios launched:  50
+  Scenarios completed: 50
+  Requests completed:  2057
+  Mean response/sec: 2011.18
+  Response time (msec):
+    min: 0
+    max: 757
+    median: 6
+    p95: 17
+    p99: 552.7
+  Scenario counts:
+    0: 50 (100%)
+  Codes:
+    302: 2057
+

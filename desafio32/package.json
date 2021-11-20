@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev src/index.ts",
     "build": "npx tsc",
-    "prod": "npm run build && forever start dist/index.js"
+    "prod": "npm run build && forever start dist/index.js",
+	"start-prof": "node --prof dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/autocannon": "^4.1.1",
     "autocannon": "^7.5.0",
     "bcrypt": "^5.0.1",
     "child_process": "^1.0.2",
@@ -37,6 +37,7 @@
     "@types/passport": "^1.0.7",
     "@types/passport-facebook": "^2.1.11",
     "@types/session-file-store": "^1.2.2",
+    "@types/autocannon": "^4.1.1",
     "connect-mongo": "^4.6.0",
     "express-session": "^1.17.2",
     "ts-node-dev": "^1.1.8",

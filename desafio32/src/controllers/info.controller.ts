@@ -14,7 +14,7 @@ export const getInfo = (req: Request, res: Response) => {
 		cpus: cpus().length
 
 	};
-	res.json(info);
 	logger.info("Info request ok");
+	res.json(info);
 }
 

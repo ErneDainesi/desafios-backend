@@ -1,5 +1,5 @@
 import {User} from './models/User';
-import {getServerMode, getServerPort} from './lib/stdinParser';
+import {getServerPort, serverAsClusterMode} from './lib/stdinParser';
 import {MongoDatabase} from './db/MongoDatabase';
 import cluster from 'cluster';
 import {cpus} from 'os';
@@ -41,7 +41,7 @@ const initClusterMode = () => {
 	}
 }
 
-if (getServerMode()) {
+if (serverAsClusterMode()) {
 	initClusterMode();
 } else {
 	app.listen(port, () => {
