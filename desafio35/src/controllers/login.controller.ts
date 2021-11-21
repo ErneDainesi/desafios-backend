@@ -12,7 +12,7 @@ export const welcome = (req: Request, res: Response) => {
 	const mailOptions = {
 		from: 'Nodejs server',
 		to: 'weston.braun16@ethereal.email',
-		subject: 'Logout',
+		subject: 'Login',
 		htmt: `<h1>Logged in as ${user}</h1>`
 	};
 	transporter.sendMail(mailOptions, (err, info) => {

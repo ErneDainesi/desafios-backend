@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import MongoStore from 'connect-mongo';
 import loginController from './routes/login.route'
 import infoController from './routes/info.route';
+import chatController from './routes/chat.route';
 import randomsController from './routes/randoms.route';
 import passport from './passport';
 import compression from 'compression';
@@ -15,6 +16,7 @@ import {
 const app: Application = express();
 const ejs = require("ejs").__express; // fix for error "cannot find ejs module"
 
+app.use(express.static('./public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -28,7 +30,6 @@ app.use(session({
 	}
 }));
 
-
 app.use(compression());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -36,13 +37,15 @@ app.use(passport.session());
 app.use('/login', loginController);
 app.use('/info', infoController);
 app.use('/randoms', randomsController);
+app.use('/chat', chatController);
 
 app.set('view engine', 'ejs');
-app.set('views', './src/views');
+// app.set('views', './src/views');
 app.engine('ejs', ejs);
 
 app.get('/', (req: Request, res: Response) => {
-	res.redirect('/login/facebook');
+	// res.redirect('/login/facebook');
+	res.send('index.html');
 });
 
 export default app;
